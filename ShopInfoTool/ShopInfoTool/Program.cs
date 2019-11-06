@@ -1,4 +1,5 @@
 ﻿using System;
+using DataAccess;
 
 namespace ShopInfoTool
 {
@@ -6,7 +7,33 @@ namespace ShopInfoTool
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello ShopInfoTool!");
+            Console.WriteLine("Wired Brain Coffee - Shop Info Tool!");
+
+            Console.WriteLine("Write 'help' to list available coffee shop commands, " +
+              "write 'quit' to exit application");
+
+            var coffeeShopDataProvider = new coffeshopDataProvider();
+
+            while (true)
+            {
+                var line = Console.ReadLine();
+
+                if (string.Equals("quit", line, StringComparison.OrdinalIgnoreCase))
+                {
+                    break;
+                }
+
+                var coffeeShops = coffeeShopDataProvider.LoadCoffeeShops();
+
+                if (string.Equals("help", line, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("> Available coffee shop commands:");
+                    foreach (var coffeeShop in coffeeShops)
+                    {
+                        Console.WriteLine($"> " + coffeeShop.Location);
+                    }
+                }
+            }
         }
     }
 }
