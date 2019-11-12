@@ -24,6 +24,12 @@ namespace DataAccess
                 BeansInStockInKg = 56,
                 PaperCupsInStock = 427
             };
+            yield return new coffeshop
+            {
+                Location = "Paris",
+                BeansInStockInKg = 56,
+                PaperCupsInStock = 427
+            };
         }
     }
 }
